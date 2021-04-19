@@ -1,0 +1,61 @@
+{{#partial "titulo"}}
+Entidades jurídicas
+{{/partial}}
+
+
+{{#partial "contenido"}}
+<div class="row">
+    <div class="col-md-8">
+        <form method="get" action="/entidadesJuridicas">
+            <span class="col-md-3">Categoría</span>
+            <select class="custom-select col-md-6" name="categoria_id">
+              {{#with categoriaSeleccionada}}
+              <option value="{{id}}" hidden selected>{{nombre}}</option>
+              {{/with}}
+              <option value>Todas las categorias</option>
+              {{#each categorias}}
+              <option value="{{id}}">{{nombre}}</option>
+              {{/each}}
+            </select>
+            <input type="submit" class="btn btn-secondary" value="Buscar"/>
+        </form>
+    </div>
+    <div class="col-md-4 text-md-right">
+        <a href="/entidadesJuridicas/new" class="btn btn-info">
+            Nueva entidad
+        </a>
+    </div>
+</div>
+<div class="table-responsive">
+  <table class="table table-hover table-striped table-bordered w-100">
+    <thead class="thead-dark">
+        <tr>
+          <th scope="col">CUIT</th>
+          <th scope="col">Razón social</th>
+          <th scope="col">Nombre ficticio</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Categoría</th>
+          <th scope="col" class="text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each entidadesJuridicas}}
+        <tr>
+            <td class="align-middle"> {{ cuit }} </td>
+            <td class="align-middle"> {{ razonSocial }} </td>
+            <td class="align-middle"> {{ nombreFicticio }} </td>
+            <td class="align-middle"> {{ tipoEntidadJuridica.nombre }} </td>
+            <td class="align-middle"> {{ categoria.nombre }} </td>
+            <td class="text-center align-middle">
+                <a href="/entidadesBase?entidad_juridica_id={{ id }}" class="mr-4">Entidades base</a>
+                <a href="/entidadesJuridicas/{{ id }}">Editar</a>
+            </td>
+        </tr>
+        {{/each}}
+      </tbody>
+  </table>
+</div>
+
+{{/partial}}
+
+{{>logged-layout.hbs}}

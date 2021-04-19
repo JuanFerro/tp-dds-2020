@@ -1,0 +1,69 @@
+{{#partial "titulo"}}
+    {{#if entidad}}
+    Modificar
+    {{else}}
+    Nueva
+    {{/if}}
+     entidad jurídica
+{{/partial}}
+
+{{#partial "contenido"}}
+<div>
+    <form method="post" action="/entidadesJuridicas{{#if entidad}}/{{entidad.id}}{{/if}}">
+        <div class="row">
+            <div class="col-md-6">
+                <label>Razón social</label>
+                <input type="text" class="form-control" placeholder="Razón social" name="razonSocial" value="{{entidad.razonSocial}}" required>
+            </div>
+            <div class="col-md-6">
+                <label>Nombre ficticio</label>
+                <input type="text" class="form-control" placeholder="Nombre ficticio" name="nombreFicticio" value="{{entidad.nombreFicticio}}" required>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <label>Cuit</label>
+                <input type="number" class="form-control" placeholder="Cuit" name="cuit" value="{{entidad.cuit}}" required>
+            </div>
+            <div class="col-md-6">
+                <label>Dirección postal</label>
+                <input type="number" class="form-control" placeholder="Dirección postal" name="direccionPostal" value="{{entidad.direccionPostal}}" required>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <label>Tipo de entidad</label>
+                <select class="form-control" name="tipoEntidadJuridica">
+                  {{#with tipoEntidadSeleccionada}}
+                    <option value="{{val}}" selected hidden>{{nombre}}</option>
+                  {{/with}}
+                  {{#each tiposEntidad}}
+                  <option value="{{val}}">{{nombre}}</option>
+                  {{/each}}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label>Categoría</label>
+                <select class="form-control" name="categoria_id">
+                  {{#with categoriaSeleccionada}}
+                    <option value="{{id}}" selected hidden>{{nombre}}</option>
+                  {{/with}}
+                  {{#each categorias}}
+                  <option value="{{id}}">{{nombre}}</option>
+                  {{/each}}
+                </select>
+            </div>
+        </div>
+        <div class="w-100 mt-4 text-right">
+            <div>
+                <a href="/entidadesJuridicas" class="btn btn-secondary">Cancelar</a>
+                <input type="submit" class="btn btn-info ml-4" value="{{#if entidad}}Modificar{{else}}Nueva{{/if}} entidad">
+            </div>
+        </div>
+    </form>
+</div>
+
+{{/partial}}
+
+
+{{>logged-layout.hbs}}

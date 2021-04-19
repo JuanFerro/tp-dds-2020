@@ -1,0 +1,63 @@
+{{#partial "titulo"}}
+        Nuevo Egreso 1/2
+{{/partial}}
+
+{{#partial "contenido"}}
+    <form method="post" action="/egresos/new/step1">
+        <div class="row" >
+            <div class="col-md-6">
+                <label>Entidad a la que pertenece</label>
+                <select class="form-control" name="entidad_id">
+                    {{#each entidadesJuridicas}}
+                        <option value="{{id}}">{{razonSocial}}</option>
+                    {{/each}}
+                    {{#each entidadesBase}}
+                        <option value="{{id}}">{{nombreFicticio}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label>Fecha</label>
+                <input type="date" class="form-control" name="fecha" value="{{egreso.fecha}}" required>
+            </div>
+            <div class="col-md-6  mt-4">
+                <label>Medio de Pago</label>
+                <select class="form-control" name="tipoMedioDePago">
+                    {{#each tiposMedioDePago}}
+                        <option value="{{val}}">{{nombre}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="col-md-6 mt-4">
+                <label>Identificador del medio de pago</label>
+                <input type="number" class="form-control" placeholder="Identificador" name="identMedioDePago" value="{{egreso.fecha}}" required>
+            </div>
+            <div class="col-md-6  mt-4">
+                <label>Criterio De Selección del Proveedor</label>
+                <select class="form-control" name="criterioDeSeleccionProveedor">
+                    {{#each CriteriosDeSeleccionProveedor}}
+                        <option value="{{val}}">{{nombre}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="col-md-6  mt-4">
+                <label>Proveedor</label>
+                <select class="form-control" name="proveedor_id">
+                    {{#each proveedores}}
+                        <option value="{{ id }}">{{ razonSocial }}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+        <div class="w-100 mt-4 text-right">
+            <div>
+                <a href="/egresos" class="btn btn-secondary">Cancelar</a>
+                <input type="submit" class="btn btn-info ml-4" value="Siguiente">
+            </div>
+        </div>
+    </form>
+
+{{/partial}}
+
+
+{{>logged-layout.hbs}}

@@ -1,0 +1,33 @@
+body {
+    background-color: #EEE;
+}
+
+.sombreado {
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.card {
+    background-color: #FFF;
+    border: 1px solid #FDFDFD;
+    padding: 30px;
+}
+
+.login-card {
+    width: 95vw;
+    max-width: 650px;
+    margin: auto;
+    margin-top: 10%;
+}
+
+.footer {
+    position: absolute;
+    bottom:0;
+    width: 100%;
+    text-align: center;
+}
+
+nav > .right-div {
+    position: absolute;
+    float: right;
+    right: 0;
+}
